@@ -77,6 +77,11 @@ elif page == "Custom Dataset":
         field_name = st.text_input(f"Enter Field Name {i + 1}")
         field_names.append(field_name)
 
+    # Display field names
+    st.write("Field names entered:")
+    for i, field_name in enumerate(field_names):
+        st.write(f"Field {i + 1}: {field_name}")
+
     # Input the number of rows
     num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
 
@@ -104,3 +109,4 @@ elif page == "Custom Dataset":
             key="page1_download",
             file_name="generated_dataset.csv",
         )
+
