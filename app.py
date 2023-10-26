@@ -8,7 +8,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset", "Custom Dataset"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator"])
 
 # Page 1: Introduction
 if page == "Home Page":
@@ -31,7 +31,7 @@ if page == "Home Page":
     st.write("To get started, use the sidebar navigation to access the respective pages.")
   
 # Page 2: Automatic Dataset Generator
-elif page == "Automatic Dataset":
+elif page == "Automatic Dataset Generator":
     st.title("Automatic Dataset Generator Page")
     
     # Load your original dataset
@@ -65,7 +65,7 @@ elif page == "Automatic Dataset":
             )
 
 # Page 3: Manual Dataset Generator
-elif page == "Custom Dataset":
+elif page == "Custom Dataset Generator":
     st.title("Custom Dataset Generator Page")
 
     # Input number of fields (max 10)
@@ -78,9 +78,6 @@ elif page == "Custom Dataset":
     for i in range(num_fields):
         field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}")
         field_names.append(field_name)
-        
-        if i < num_fields - 1:
-            st.write("Please enter the name for the next field before proceeding.")
 
     st.write("**Field Names**")
     st.write(field_names)
@@ -100,8 +97,9 @@ elif page == "Custom Dataset":
     if st.button("Generate Dataset"):
         data = {field_name: field_values[field_name] for field_name in field_names}
         generated_df = pd.DataFrame(data)
-        st.write("**Generated Dataset**")
+        st.header("Generated Dataset")
         st.dataframe(generated_df)
+        st.header("Info about the Generated Dataset")
 
         # Download the dataset using st.download_button
         csv = generated_df.to_csv(index=False)
