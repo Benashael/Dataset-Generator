@@ -67,28 +67,33 @@ elif page == "Automatic Dataset":
 # Page 3: Manual Dataset Generator
 elif page == "Custom Dataset":
     st.title("Custom Dataset Generator Page")
-    
+
     # Input number of fields (max 10)
     num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
-    
-    # Input field names and values
+
+    # Input field names
     field_names = []
-    field_values = []
-    
     for i in range(num_fields):
         field_name = st.text_input(f"Enter Field Name {i + 1}")
-        field_value = st.text_area(f"Enter Field Values (comma-separated) for {field_name}")
         field_names.append(field_name)
-        field_values.append(field_value.split(','))
-    
+
+    # Input the number of rows
+    num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
+
+    # Collect field values for each row
+    field_values = {field_name: [] for field_name in field_names}
+    for i in range(num_rows):
+        st.write(f"Record {i + 1}")
+        for field_name in field_names:
+            field_value = st.text_input(f"Enter the value for {field_name} in Record {i + 1}")
+            field_values[field_name].append(field_value)
+
     # Generate the dataset
     if st.button("Generate Dataset"):
-        data = {}
-        for name, values in zip(field_names, field_values):
-            data[name] = [random.choice(values) for _ in range(50)]
+        data = {field_name: field_values[field_name] for field_name in field_names}
         generated_df = pd.DataFrame(data)
         st.dataframe(generated_df)
-    
+
         # Download the dataset using st.download_button
         csv = generated_df.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
@@ -99,4 +104,3 @@ elif page == "Custom Dataset":
             key="page1_download",
             file_name="generated_dataset.csv",
         )
-  
