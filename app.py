@@ -102,23 +102,23 @@ elif page == "Custom Dataset Generator":
         st.header("Dataset Overview")
         
         # Dataset Shape
-        st.write("Dataset Shape:", data.shape)
+        st.write("Dataset Shape:", generated_df.shape)
 
         # Column Names
         st.subheader("Column Names:")
-        st.write(data.columns)
+        st.write(generated_df.columns)
 
         # Data Types
         st.subheader("Data Types:")
-        st.write(data.dtypes)
+        st.write(generated_df.dtypes)
 
         # Summary Statistics
         st.subheader("Summary Statistics:")
-        st.write(data.describe())
+        st.write(generated_df.describe())
 
         # Info
         st.subheader("Info about Data:")
-        st.write(data.info())
+        st.write(generated_df.info())
         
         # Download the dataset using st.download_button
         csv = generated_df.to_csv(index=False)
