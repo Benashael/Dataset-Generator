@@ -79,7 +79,7 @@ elif page == "Custom Dataset Generator":
         field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}")
         field_names.append(field_name)
 
-    st.write("**Field Names**")
+    st.header("Field Names")
     st.write(field_names)
     
     # Input the number of rows
@@ -88,7 +88,7 @@ elif page == "Custom Dataset Generator":
     # Collect field values for each row with unique keys
     field_values = {field_name: [] for field_name in field_names}
     for i in range(num_rows):
-        st.write(f"Record {i + 1}")
+        st.write(f"**Record {i + 1}**")
         for field_name in field_names:
             field_value = st.text_input(f"Enter the value for {field_name} in Record {i + 1}", key=f"value_{i}_{field_name}")
             field_values[field_name].append(field_value)
