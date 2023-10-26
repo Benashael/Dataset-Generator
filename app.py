@@ -23,7 +23,7 @@ if page == "Home Page":
              "you can download it.")
 
     # Page 3 Description
-    st.header("Page 2: Automatic Dataset Generator")
+    st.header("Automatic Dataset Generator Page")
     st.write("This page enables you to generate datasets based on your original dataset. You can select fields from "
              "your dataset, specify the number of rows (up to 500), and generate a dataset with randomly sampled values. "
              "You can also download the generated dataset.")
