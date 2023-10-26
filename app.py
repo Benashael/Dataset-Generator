@@ -99,6 +99,14 @@ elif page == "Custom Dataset Generator":
         generated_df = pd.DataFrame(data)
         st.header("Generated Dataset")
         st.dataframe(generated_df)
+
+        if st.button("Download Dataset"):
+                        data = generated_df
+                        csv = data.to_csv(index=False)
+                        b64 = base64.b64encode(csv.encode()).decode()  # Convert to base64
+                        href = f'<a href="data:file/csv;base64,{b64}" download="generated_data.csv">Click here to Download Generated Data</a>'
+                        st.markdown(href, unsafe_allow_html=True)
+        
         st.header("Dataset Overview")
         
         # Dataset Shape
@@ -115,23 +123,5 @@ elif page == "Custom Dataset Generator":
         # Summary Statistics
         st.subheader("Summary Statistics:")
         st.write(generated_df.describe())
-
-        # Info
-        st.subheader("Info about Data:")
-        st.write(generated_df.info())
         
-        # Download the dataset using st.download_button
-        csv = generated_df.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
-        href = f"data:file/csv;base64,{b64}"
-
-        try:
-            st.download_button(
-                label="Download Dataset",
-                data=href,
-                key="page3_download",
-                file_name="generated_dataset.csv",
-            )
-        except st.DuplicateWidgetID:
-            st.warning("An error occurred while trying to download the dataset. Please try again.")
-
+      
