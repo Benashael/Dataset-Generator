@@ -76,6 +76,7 @@ elif page == "Custom Dataset":
 
     # Collect field names one by one
     for i in range(num_fields):
+        unique_key="Field Name"
         field_name = st.text_input(f"Enter Field Name {i + 1}", key=unique_key)
         field_names.append(field_name)
         
