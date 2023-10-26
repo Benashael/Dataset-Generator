@@ -64,6 +64,11 @@ elif page == "Automatic Dataset":
                 file_name="generated_auto_dataset.csv",
             )
 
+import streamlit as st
+import pandas as pd
+import random
+import base64
+
 # Page 3: Manual Dataset Generator
 elif page == "Custom Dataset":
     st.title("Custom Dataset Generator Page")
@@ -71,16 +76,17 @@ elif page == "Custom Dataset":
     # Input number of fields (max 10)
     num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
 
-    # Input field names
+    # Initialize an empty list to store field names
     field_names = []
+
+    # Collect field names one by one
     for i in range(num_fields):
         field_name = st.text_input(f"Enter Field Name {i + 1}")
         field_names.append(field_name)
-
-    # Display field names
-    st.write("Field names entered:")
-    for i, field_name in enumerate(field_names):
-        st.write(f"Field {i + 1}: {field_name}")
+        
+        if i < num_fields - 1:
+            st.write(f"Field {i + 1} name: {field_name}")
+            st.write("Please enter the name for the next field before proceeding.")
 
     # Input the number of rows
     num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
@@ -103,10 +109,13 @@ elif page == "Custom Dataset":
         csv = generated_df.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
         href = f"data:file/csv;base64,{b64}"
-        st.download_button(
-            label="Download Dataset",
-            data=href,
-            key="page1_download",
-            file_name="generated_dataset.csv",
-        )
 
+        try:
+            st.download_button(
+                label="Download Dataset",
+                data=href,
+                key="page3_download",
+                file_name="generated_dataset.csv",
+            )
+        except st.DuplicateWidgetID:
+            st.warning("An error occurred while trying to download the dataset. Please try again.")
