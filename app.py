@@ -76,13 +76,16 @@ elif page == "Custom Dataset":
 
     # Collect field names one by one
     for i in range(num_fields):
-        field_name = st.text_input(f"Enter Field Name {i + 1}")
+        field_name = st.text_input(f"Enter Field Name {i + 1}", key=unique_key)
         field_names.append(field_name)
         
         if i < num_fields - 1:
             st.write(f"Field {i + 1} name: {field_name}")
             st.write("Please enter the name for the next field before proceeding.")
 
+    st.write("**Field Names**")
+    st.write(field_names)
+    
     # Input the number of rows
     num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
 
@@ -91,7 +94,7 @@ elif page == "Custom Dataset":
     for i in range(num_rows):
         st.write(f"Record {i + 1}")
         for field_name in field_names:
-            field_value = st.text_input(f"Enter the value for {field_name} in Record {i + 1}")
+            field_value = st.text_input(f"Enter the value for {field_name} in Record {i + 1}", key=unique_key)
             field_values[field_name].append(field_value)
 
     # Generate the dataset
