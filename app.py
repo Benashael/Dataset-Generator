@@ -69,7 +69,7 @@ elif page == "Custom Dataset Generator":
     st.title("Custom Dataset Generator Page")
 
     # Input number of fields (max 10)
-    num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
+    num_fields = st.number_input("Enter the number of fields or columns (max 10)", min_value=1, max_value=10)
 
     # Initialize an empty list to store field names
     field_names = []
@@ -83,7 +83,7 @@ elif page == "Custom Dataset Generator":
     st.write(field_names)
     
     # Input the number of rows
-    num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
+    num_rows = st.number_input("Enter the number of records or rows", min_value=1, max_value=500)
 
     # Collect field values for each row with unique keys
     field_values = {field_name: [] for field_name in field_names}
@@ -99,8 +99,27 @@ elif page == "Custom Dataset Generator":
         generated_df = pd.DataFrame(data)
         st.header("Generated Dataset")
         st.dataframe(generated_df)
-        st.header("Info about the Generated Dataset")
+        st.header("Dataset Overview")
+        
+        # Dataset Shape
+        st.write("Dataset Shape:", data.shape)
 
+        # Column Names
+        st.subheader("Column Names:")
+        st.write(data.columns)
+
+        # Data Types
+        st.subheader("Data Types:")
+        st.write(data.dtypes)
+
+        # Summary Statistics
+        st.subheader("Summary Statistics:")
+        st.write(data.describe())
+
+        # Info
+        st.subheader("Info about Data:")
+        st.write(data.info())
+        
         # Download the dataset using st.download_button
         csv = generated_df.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
