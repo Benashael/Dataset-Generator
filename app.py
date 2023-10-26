@@ -80,7 +80,6 @@ elif page == "Custom Dataset":
         field_names.append(field_name)
         
         if i < num_fields - 1:
-            st.write(f"Field {i + 1} name: {field_name}")
             st.write("Please enter the name for the next field before proceeding.")
 
     st.write("**Field Names**")
@@ -101,6 +100,7 @@ elif page == "Custom Dataset":
     if st.button("Generate Dataset"):
         data = {field_name: field_values[field_name] for field_name in field_names}
         generated_df = pd.DataFrame(data)
+        st.write("**Generated Dataset**")
         st.dataframe(generated_df)
 
         # Download the dataset using st.download_button
