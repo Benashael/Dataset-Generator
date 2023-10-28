@@ -40,7 +40,7 @@ elif page == "Automatic Dataset Generator":
     
     # Input fields
     st.write("Select the fields you want to include in the generated dataset:")
-    selected_fields = st.multiselect("Select fields from your dataset", original_dataset.columns)
+    selected_fields = st.multiselect("Select field names:", original_dataset.columns)
     
     # Input number of rows (max 500)
     num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=500)
@@ -52,18 +52,32 @@ elif page == "Automatic Dataset Generator":
         else:
             # Randomly sample rows from the original dataset
             generated_df = original_dataset[selected_fields].sample(n=num_rows, replace=True)
+            st.subheader("Generated Dataset:")
             st.dataframe(generated_df)
     
-            # Download the dataset using st.download_button
+            # Download the dataset using st.button and base64
             csv = generated_df.to_csv(index=False)
             b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
-            href = f"data:file/csv;base64,{b64}"
-            st.download_button(
-                label="Download Dataset",
-                data=href,
-                key="page2_download",
-                file_name="generated_auto_dataset.csv",
-            )
+            href = f'data:file/csv;base64,{b64}'
+            st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+            
+            st.header("Dataset Overview")
+            
+            # Dataset Shape
+            st.subheader("Dataset Shape:")
+            st.write(generated_df.shape)
+    
+            # Column Names
+            st.subheader("Column Names:")
+            st.write(generated_df.columns)
+    
+            # Data Types
+            st.subheader("Data Types:")
+            st.write(generated_df.dtypes)
+    
+            # Summary Statistics
+            st.subheader("Summary Statistics:")
+            st.write(generated_df.describe())
 
 # Page 3: Manual Dataset Generator
 elif page == "Custom Dataset Generator":
