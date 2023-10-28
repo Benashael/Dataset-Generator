@@ -17,7 +17,7 @@ if page == "Home Page":
     st.title("Welcome to the Dataset Generator App")
     st.write("This app allows you to generate datasets for various purposes. It consists of two pages:")  
 
-    # Page 1 Description
+    # Page 2 Description
     st.header("Automatic Dataset Generator Page")
     st.write("This page enables you to generate datasets based on your original dataset. You can select fields from "
              "your dataset, specify the number of rows (up to 500), and generate a dataset with randomly sampled values. "
@@ -28,6 +28,12 @@ if page == "Home Page":
     st.write("On this page, you can customize your dataset by specifying the number of fields, field names, and values. "
              "You can generate a dataset with a maximum of 10 fields and 50 rows. After generating the dataset, "
              "you can download it.")
+
+    # Page 4 Description
+
+    # Page 5 Description
+
+    # Page 6 Description
 
     st.write("To get started, use the sidebar navigation to access the respective pages.")
   
