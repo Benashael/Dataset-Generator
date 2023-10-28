@@ -65,31 +65,39 @@ elif page == "Automatic Dataset Generator":
                 file_name="generated_auto_dataset.csv",
             )
 
+import streamlit as st
+import pandas as pd
+import random
+import base64
+
 # Page 3: Manual Dataset Generator
-elif page == "Custom Dataset Generator":
+elif page == "Custom Dataset":
     st.title("Custom Dataset Generator Page")
 
     # Input number of fields (max 10)
-    num_fields = st.number_input("Enter the number of fields or columns (max 10)", min_value=1, max_value=10)
+    num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
 
     # Initialize an empty list to store field names
     field_names = []
 
-    # Collect field names one by one with unique keys
+    # Collect field names one by one with unique keys and validate data type
     for i in range(num_fields):
-        field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}")
+        field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}", value="Please enter field name")
+        if not isinstance(field_name, str):
+            st.error("Field names must be of string data type. Please enter a valid field name.")
+            break
         field_names.append(field_name)
 
-    st.header("Field Names")
+    st.write("**Field Names**")
     st.write(field_names)
     
     # Input the number of rows
-    num_rows = st.number_input("Enter the number of records or rows", min_value=1, max_value=500)
+    num_rows = st.number_input("Enter the number of rows", min_value=1, max_value=500)
 
     # Collect field values for each row with unique keys
     field_values = {field_name: [] for field_name in field_names}
     for i in range(num_rows):
-        st.write(f"**Record {i + 1}**")
+        st.write(f"Record {i + 1}")
         for field_name in field_names:
             field_value = st.text_input(f"Enter the value for {field_name} in Record {i + 1}", key=f"value_{i}_{field_name}")
             field_values[field_name].append(field_value)
@@ -98,15 +106,14 @@ elif page == "Custom Dataset Generator":
     if st.button("Generate Dataset"):
         data = {field_name: field_values[field_name] for field_name in field_names}
         generated_df = pd.DataFrame(data)
-        st.header("Generated Dataset")
         st.dataframe(generated_df)
 
+        # Download the dataset using st.button and base64
         if st.button("Download Dataset"):
-                        data = generated_df
-                        csv = data.to_csv(index=False)
-                        b64 = base64.b64encode(csv.encode()).decode()  # Convert to base64
-                        href = f'<a href="data:file/csv;base64,{b64}" download="generated_data.csv">Click here to Download Generated Data</a>'
-                        st.markdown(href, unsafe_allow_html=True)
+            csv = generated_df.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+            href = f'data:file/csv;base64,{b64}'
+            st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to Download Generated Data</a>', unsafe_allow_html=True)
         
         st.header("Dataset Overview")
         
