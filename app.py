@@ -73,8 +73,12 @@ elif page == "Custom Dataset Generator":
     num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
 
     st.markdown(
+        "**Please note the following:**"
+    )
+    st.markdown(
         "1. The field name can be changed by yourself from default field name."
-        
+    )
+    st.markdown(
         "2. The field name entered must be of string data type."
     )
     
