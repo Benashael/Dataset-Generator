@@ -65,11 +65,6 @@ elif page == "Automatic Dataset Generator":
                 file_name="generated_auto_dataset.csv",
             )
 
-import streamlit as st
-import pandas as pd
-import random
-import base64
-
 # Page 3: Manual Dataset Generator
 elif page == "Custom Dataset":
     st.title("Custom Dataset Generator Page")
