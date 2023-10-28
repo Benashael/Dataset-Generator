@@ -66,7 +66,7 @@ elif page == "Automatic Dataset Generator":
             )
 
 # Page 3: Manual Dataset Generator
-elif page == "Custom Dataset":
+elif page == "Custom Dataset Generator":
     st.title("Custom Dataset Generator Page")
 
     # Input number of fields (max 10)
