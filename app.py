@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator"], "**Dataset for Machine Learning**")
 
 # Page 1: Introduction
 if page == "Home Page":
