@@ -112,6 +112,7 @@ elif page == "Custom Dataset Generator":
     if st.button("Generate Dataset"):
         data = {field_name: field_values[field_name] for field_name in field_names}
         generated_df = pd.DataFrame(data)
+        st.subheader("Generated Dataset:")
         st.dataframe(generated_df)
 
         # Download the dataset using st.button and base64
