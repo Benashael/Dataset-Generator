@@ -72,12 +72,18 @@ elif page == "Custom Dataset Generator":
     # Input number of fields (max 10)
     num_fields = st.number_input("Enter the number of fields (max 10)", min_value=1, max_value=10)
 
+    st.markdown(
+        "1. The field name can be changed by yourself from default field name."
+        "2. The field name entered must be of string data type."
+    )
+    
     # Initialize an empty list to store field names
     field_names = []
 
     # Collect field names one by one with unique keys and validate data type
     for i in range(num_fields):
-        field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}", value="Please enter field name")
+        default_field_name = f"Field Name {i + 1}"
+        field_name = st.text_input(f"Enter Field Name {i + 1}", key=f"field_name_{i}", value=default_field_name)
         if not isinstance(field_name, str):
             st.error("Field names must be of string data type. Please enter a valid field name.")
             break
