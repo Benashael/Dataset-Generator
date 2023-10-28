@@ -36,7 +36,7 @@ elif page == "Automatic Dataset Generator":
     st.title("Automatic Dataset Generator Page")
     
     # Load your original dataset
-    original_dataset = pd.read_excel("https://github.com/Benashael/Dataset-Generator/blob/main/data.xlsx", header=0)  
+    original_dataset = pd.read_csv("data.csv")  
     
     # Input fields
     st.write("Select the fields you want to include in the generated dataset:")
