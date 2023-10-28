@@ -124,7 +124,8 @@ elif page == "Custom Dataset Generator":
         st.header("Dataset Overview")
         
         # Dataset Shape
-        st.write("Dataset Shape:", generated_df.shape)
+        st.subheader("Dataset Shape:")
+        st.write(generated_df.shape)
 
         # Column Names
         st.subheader("Column Names:")
