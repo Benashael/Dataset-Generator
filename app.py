@@ -40,7 +40,7 @@ elif page == "Automatic Dataset Generator":
     
     # Input fields
     st.write("Select the fields you want to include in the generated dataset:")
-    selected_fields = st.multiselect("Select field names:", original_dataset.columns)
+    selected_fields = st.multiselect("Select field names", original_dataset.columns)
     
     # Input number of rows (max 500)
     num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=500)
