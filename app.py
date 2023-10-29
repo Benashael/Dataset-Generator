@@ -42,7 +42,7 @@ if page == "Home Page":
     # Page 6 Description
     st.header("Dataset for Clustering (ML) Page")
     st.write("This page enables you to generate datasets used for Clustering (ML) tasks."
-             "At each dataset, you can find the column in name 'Cluster' as the last column.
+             "At each dataset, you can find the column in name 'Cluster' as the last column."
              "Here, you can choose a specific clustered dataset for download.")
     
     st.write("To get started, use the sidebar navigation to access the respective pages.")
