@@ -191,6 +191,7 @@ elif page == "Dataset for Classification (ML)":
 
         # Load and display the selected dataset
         dataset = pd.read_csv(dataset_url)
+        st.subheader("Generated Dataset:")
         st.dataframe(dataset)
 
         # Download the dataset using base64 encoding
@@ -198,3 +199,29 @@ elif page == "Dataset for Classification (ML)":
         b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
         href = f'data:file/csv;base64,{b64}'
         st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+
+        st.header("Dataset Overview")
+            
+        # Dataset Shape
+        st.subheader("Dataset Shape:")
+        st.write(dataset.shape)
+
+        # Column Names
+        st.subheader("Column Names:")
+        st.write(dataset.columns)
+
+        # Data Types
+        st.subheader("Data Types:")
+        st.write(dataset.dtypes)
+
+        # Summary Statistics
+        st.subheader("Summary Statistics:")
+        st.write(dataset.describe())
+
+        # Data Head
+        st.subheader("Data Head:")
+        st.write(dataset.head())
+
+        # Data Tail
+        st.subheader("Data Head:")
+        st.write(dataset.tail())
