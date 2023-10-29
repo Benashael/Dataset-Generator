@@ -68,11 +68,12 @@ if page == "Home Page":
     st.markdown("""
     4. **Dataset Preview**: After generating a dataset, it will be displayed for your review. You can explore the data to make sure it meets your requirements.
     """)
-    st.write("To get started, use the sidebar navigation to access the respective pages.")
-
+    
     st.markdown("""
     7. **Download in CSV Format**: When you're satisfied with the generated dataset, click the 'Download Dataset' button to download it in CSV format using base64 encoding.
     """)
+
+    st.write("To get started, use the sidebar navigation to access the respective pages.")
   
 # Page 2: Automatic Dataset Generator
 elif page == "Automatic Dataset Generator":
