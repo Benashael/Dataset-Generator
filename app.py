@@ -51,7 +51,28 @@ if page == "Home Page":
              "Each dataset used here as different kind of association rules. "
              "Here, you can choose a specific association dataset for download.")
     
+    # Tips
+    st.header("Additional Tips")
+    st.markdown("""
+    1. **Interactive User Interface**: The app is designed to be user-friendly with interactive elements like buttons, select boxes, and data display. Follow the prompts to create and download your datasets effortlessly.
+    """)
+    
+    st.markdown("""
+    2. **Data Validation**: Ensure that you enter valid data types for field names and values. The app provides feedback on data validation to assist you in the process.
+    """)
+    
+    st.markdown("""
+    3. **Error Handling**: In case of errors or issues, the app is equipped with error-handling mechanisms to guide you through a smooth experience.
+    """)
+    
+    st.markdown("""
+    4. **Dataset Preview**: After generating a dataset, it will be displayed for your review. You can explore the data to make sure it meets your requirements.
+    """)
     st.write("To get started, use the sidebar navigation to access the respective pages.")
+
+    st.markdown("""
+    7. **Download in CSV Format**: When you're satisfied with the generated dataset, click the 'Download Dataset' button to download it in CSV format using base64 encoding.
+    """)
   
 # Page 2: Automatic Dataset Generator
 elif page == "Automatic Dataset Generator":
@@ -115,7 +136,7 @@ elif page == "Custom Dataset Generator":
         "1. The field name can be changed by yourself from default field name."
     )
     st.markdown(
-        "2. The field name entered must be of string data type."
+        "2. The field name entered must be of character data type."
     )
     
     # Initialize an empty list to store field names
