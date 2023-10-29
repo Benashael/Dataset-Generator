@@ -186,10 +186,17 @@ elif page == "Dataset for Classification (ML)":
             "Acoustic Features Dataset": "Datasets for ML/Classification/acoustic_features_data.csv",
         }
 
-    if st.button("Download Selected Dataset"):
+    if st.button("Generate Dataset"):
         dataset_url = dataset_paths[selected_dataset]
 
-        # Provide download link
-        st.markdown(f"[Download {selected_dataset} Dataset]({dataset_url})")
+        # Load and display the selected dataset
+        dataset = pd.read_csv(dataset_url)
+        st.dataframe(dataset)
+    
+        if st.button("Download Selected Dataset"):
+            dataset_url = dataset_paths[selected_dataset]
+    
+            # Provide download link
+            st.markdown(f"[Download {selected_dataset} Dataset]({dataset_url})")
 
 
