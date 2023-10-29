@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)"])
 
 # Page 1: Introduction
 if page == "Home Page":
@@ -44,6 +44,12 @@ if page == "Home Page":
     st.write("This page enables you to generate datasets used for Clustering (ML) tasks."
              "At each dataset, you can find the column in name 'Cluster' as the last column."
              "Here, you can choose a specific clustered dataset for download.")
+    
+    # Page 7 Description
+    st.header("Dataset for Association (ML) Page")
+    st.write("This page enables you to generate datasets used for Association (ML) tasks."
+             "Each dataset used here as different kind of association rules."
+             "Here, you can choose a specific association dataset for download.")
     
     st.write("To get started, use the sidebar navigation to access the respective pages.")
   
