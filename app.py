@@ -31,24 +31,24 @@ if page == "Home Page":
 
     # Page 4 Description
     st.header("Dataset for Classification (ML) Page")
-    st.write("This page enables you to generate datasets used for Classification (ML) tasks."
+    st.write("This page enables you to generate datasets used for Classification (ML) tasks. "
              "Here, you can select the type of output (binary class or multi-class) and choose a specific dataset for download.")
 
     # Page 5 Description
     st.header("Dataset for Regression (ML) Page")
-    st.write("This page enables you to generate datasets used for Regression (ML) tasks."
+    st.write("This page enables you to generate datasets used for Regression (ML) tasks. "
              "Here, you can choose a specific regression dataset for download.")
 
     # Page 6 Description
     st.header("Dataset for Clustering (ML) Page")
-    st.write("This page enables you to generate datasets used for Clustering (ML) tasks."
-             "At each dataset, you can find the column in name 'Cluster' as the last column."
+    st.write("This page enables you to generate datasets used for Clustering (ML) tasks. "
+             "At each dataset, you can find the column in name 'Cluster' as the last column. "
              "Here, you can choose a specific clustered dataset for download.")
     
     # Page 7 Description
     st.header("Dataset for Association (ML) Page")
-    st.write("This page enables you to generate datasets used for Association (ML) tasks."
-             "Each dataset used here as different kind of association rules."
+    st.write("This page enables you to generate datasets used for Association (ML) tasks. "
+             "Each dataset used here as different kind of association rules. "
              "Here, you can choose a specific association dataset for download.")
     
     st.write("To get started, use the sidebar navigation to access the respective pages.")
