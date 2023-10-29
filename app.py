@@ -402,4 +402,4 @@ elif page == "Dataset for Association (ML)":
         st.write(dataset.tail())
 
 # Page 7: About
-elif page == "About":
+#elif page == "About":
