@@ -217,10 +217,6 @@ elif page == "Dataset for Classification (ML)":
         # Summary Statistics
         st.subheader("Summary Statistics:")
         st.write(dataset.describe())
-
-        # Information
-        st.subheader("Data Info:")
-        st.write(dataset.info())
         
         # Data Head
         st.subheader("Data Head:")
