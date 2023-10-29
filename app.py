@@ -405,7 +405,7 @@ elif page == "Dataset for Association (ML)":
 elif page == "About":
     st.title("🚀 About the Dataset Generator App")
     st.markdown("""
-    Welcome to the Dataset Generator app, a powerful tool designed to simplify the process of creating custom, automatic and machine learning datasets for your data needs! 🎉
+    Thank you for exploring the Dataset Generator app, a powerful tool designed to simplify the process of creating custom, automatic and machine learning datasets for your data needs! 🎉
 
     With this app, you can effortlessly generate datasets for various purposes, whether it's for machine learning, data analysis, or testing. Whether you need binary or multi-class datasets, we've got you covered.
     The app is built using Streamlit and Python, making it easy and user-friendly. It's brought to you by Team AI Hub and is here to help you with your data adventures.
