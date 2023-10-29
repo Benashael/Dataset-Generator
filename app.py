@@ -15,7 +15,7 @@ page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Gene
 if page == "Home Page":
     # Introduction
     st.title("Welcome to the Dataset Generator App")
-    st.write("This app allows you to generate datasets for various purposes. It consists of two pages:")  
+    st.write("This app allows you to generate datasets for various purposes. It consists of six pages:")  
 
     # Page 2 Description
     st.header("Automatic Dataset Generator Page")
