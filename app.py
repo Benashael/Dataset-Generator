@@ -193,5 +193,8 @@ elif page == "Dataset for Classification (ML)":
         dataset = pd.read_csv(dataset_url)
         st.dataframe(dataset)
     
-        st.markdown(f"[Click here to download {selected_dataset}]({dataset_url})")
-
+        # Download the dataset using base64 encoding
+        csv = dataset.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+        href = f'data:file/csv;base64,{b64}'
+        st.markdown(f"[Click here to download {selected_dataset}](href, download='{selected_dataset}.csv')", unsafe_allow_html=True)
