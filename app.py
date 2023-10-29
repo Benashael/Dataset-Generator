@@ -159,8 +159,6 @@ elif page == "Custom Dataset Generator":
         st.subheader("Summary Statistics:")
         st.write(generated_df.describe())
 
-import streamlit as st
-
 # Page 4: Dataset for Classification (ML)
 elif page == "Dataset for Classification (ML)":
     st.title("Dataset for Classification (ML) Page")
@@ -170,22 +168,22 @@ elif page == "Dataset for Classification (ML)":
 
     if output_type == "Binary Class":
         # Select binary classification dataset
-        selected_dataset = st.selectbox("Select a binary classification dataset:", ("Dataset A", "Dataset B"))
+        selected_dataset = st.selectbox("Select a binary classification dataset:", ("Heart Disease Dataset", "Diabetes Dataset"))
 
         # Define dataset paths (replace with actual dataset paths)
         dataset_paths = {
-            "Dataset A": "https://example.com/datasetA.csv",
-            "Dataset B": "https://example.com/datasetB.csv",
+            "Heart Disease Dataset": "Datasets for ML/Classification/heart_disease_data.csv",
+            "Diabetes Dataset": "Datasets for ML/Classification/diabetes_data.csv",
         }
 
     elif output_type == "Multi-Class":
         # Select multi-class classification dataset
-        selected_dataset = st.selectbox("Select a multi-class classification dataset:", ("Dataset X", "Dataset Y"))
+        selected_dataset = st.selectbox("Select a multi-class classification dataset:", ("Iris Dataset", "Acoustic Features Dataset"))
 
         # Define dataset paths (replace with actual dataset paths)
         dataset_paths = {
-            "Dataset X": "https://example.com/datasetX.csv",
-            "Dataset Y": "https://example.com/datasetY.csv",
+            "Iris Dataset": "Datasets for ML/Classification/iris_data.csv",
+            "Acoustic Features Dataset": "Datasets for ML/Classification/acoustic_features_data.csv",
         }
 
     if st.button("Download Selected Dataset"):
