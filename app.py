@@ -197,4 +197,4 @@ elif page == "Dataset for Classification (ML)":
         csv = dataset.to_csv(index=False)
         b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
         href = f'data:file/csv;base64,{b64}'
-        st.markdown(f"[Click here to download {selected_dataset}](href, download='{selected_dataset}.csv')", unsafe_allow_html=True)
+        st.markdown(f"[Click here to download {selected_dataset}](href, download='generated_dataset.csv')", unsafe_allow_html=True)
