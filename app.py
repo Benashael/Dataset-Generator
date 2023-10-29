@@ -32,14 +32,19 @@ if page == "Home Page":
     # Page 4 Description
     st.header("Dataset for Classification (ML) Page")
     st.write("This page enables you to generate datasets used for Classification (ML) tasks."
-             "Here, you can select the type of output (binary class or multi-class) and choose a specific dataset for download."
-            )
+             "Here, you can select the type of output (binary class or multi-class) and choose a specific dataset for download.")
 
-    
     # Page 5 Description
+    st.header("Dataset for Regression (ML) Page")
+    st.write("This page enables you to generate datasets used for Regression (ML) tasks."
+             "Here, you can choose a specific regression dataset for download.")
 
     # Page 6 Description
-
+    st.header("Dataset for Clustering (ML) Page")
+    st.write("This page enables you to generate datasets used for Clustering (ML) tasks."
+             "At each dataset, you can find the column in name 'Cluster' as the last column.
+             "Here, you can choose a specific clustered dataset for download.")
+    
     st.write("To get started, use the sidebar navigation to access the respective pages.")
   
 # Page 2: Automatic Dataset Generator
@@ -242,6 +247,59 @@ elif page == "Dataset for Regression (ML)":
             "Car Price Dataset": "Datasets for ML/Regression/car_price_data.csv",
             "Electricity Dataset": "Datasets for ML/Regression/electricity_data.csv",
             "House Price Dataset": "Datasets for ML/Regression/house_price_data.csv", 
+        }
+
+    if st.button("Generate Dataset"):
+        dataset_url = dataset_paths[selected_dataset]
+
+        # Load and display the selected dataset
+        dataset = pd.read_csv(dataset_url)
+        st.subheader("Generated Dataset:")
+        st.dataframe(dataset)
+
+        # Download the dataset using base64 encoding
+        csv =dataset.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+        href = f'data:file/csv;base64,{b64}'
+        st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+
+        st.header("Dataset Overview")
+            
+        # Dataset Shape
+        st.subheader("Dataset Shape:")
+        st.write(dataset.shape)
+
+        # Column Names
+        st.subheader("Column Names:")
+        st.write(dataset.columns)
+
+        # Data Types
+        st.subheader("Data Types:")
+        st.write(dataset.dtypes)
+
+        # Summary Statistics
+        st.subheader("Summary Statistics:")
+        st.write(dataset.describe())
+        
+        # Data Head
+        st.subheader("Data Head:")
+        st.write(dataset.head())
+
+        # Data Tail
+        st.subheader("Data Tail:")
+        st.write(dataset.tail())
+
+# Page 5: Dataset for Clustering (ML)
+elif page == "Dataset for Clustering (ML)":
+    st.title("Dataset for Clustering (ML) Page")
+
+    # Select regression dataset
+    selected_dataset = st.selectbox("Select a clustered dataset:", ("Sample Dataset 1", "Sample Dataset 2", "Sample Dataset 3"))
+
+    dataset_paths = {
+            "Sample Dataset 1": "Datasets for ML/Clustering/clustered_data_1.csv",
+            "Sample Dataset 2": "Datasets for ML/Clustering/clustered_data_2.csv",
+            "Sample Dataset 3": "Datasets for ML/Clustering/clustered_data_3.csv", 
         }
 
     if st.button("Generate Dataset"):
