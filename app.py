@@ -244,7 +244,7 @@ elif page == "Dataset for Regression (ML)":
             "House Price Dataset": "Datasets for ML/Regression/house_price_data.csv", 
         }
 
-     if st.button("Generate Dataset"):
+    if st.button("Generate Dataset"):
         dataset_url = dataset_paths[selected_dataset]
 
         # Load and display the selected dataset
