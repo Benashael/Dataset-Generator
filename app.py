@@ -158,5 +158,40 @@ elif page == "Custom Dataset Generator":
         # Summary Statistics
         st.subheader("Summary Statistics:")
         st.write(generated_df.describe())
-        
-      
+
+import streamlit as st
+
+# Page 4: Dataset for Classification (ML)
+elif page == "Dataset for Classification (ML)":
+    st.title("Dataset for Classification (ML) Page")
+
+    # Select type of output (binary class or multi-class)
+    output_type = st.radio("Select the type of output:", ("Binary Class", "Multi-Class"))
+
+    if output_type == "Binary Class":
+        # Select binary classification dataset
+        selected_dataset = st.selectbox("Select a binary classification dataset:", ("Dataset A", "Dataset B"))
+
+        # Define dataset paths (replace with actual dataset paths)
+        dataset_paths = {
+            "Dataset A": "https://example.com/datasetA.csv",
+            "Dataset B": "https://example.com/datasetB.csv",
+        }
+
+    elif output_type == "Multi-Class":
+        # Select multi-class classification dataset
+        selected_dataset = st.selectbox("Select a multi-class classification dataset:", ("Dataset X", "Dataset Y"))
+
+        # Define dataset paths (replace with actual dataset paths)
+        dataset_paths = {
+            "Dataset X": "https://example.com/datasetX.csv",
+            "Dataset Y": "https://example.com/datasetY.csv",
+        }
+
+    if st.button("Download Selected Dataset"):
+        dataset_url = dataset_paths[selected_dataset]
+
+        # Provide download link
+        st.markdown(f"[Download {selected_dataset} Dataset]({dataset_url})")
+
+
