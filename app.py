@@ -70,7 +70,7 @@ if page == "Home Page":
     """)
     
     st.markdown("""
-    7. **Download in CSV Format**: When you're satisfied with the generated dataset, click the 'Download Dataset' button to download it in CSV format using base64 encoding.
+    5. **Download in CSV Format**: When you're satisfied with the generated dataset, click the 'Download Dataset' button to download it in CSV format using base64 encoding.
     """)
 
     st.write("To get started, use the sidebar navigation to access the respective pages.")
