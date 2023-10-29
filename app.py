@@ -193,10 +193,5 @@ elif page == "Dataset for Classification (ML)":
         dataset = pd.read_csv(dataset_url)
         st.dataframe(dataset)
     
-        if st.button("Download Selected Dataset"):
-            dataset_url = dataset_paths[selected_dataset]
-    
-            # Provide download link
-            st.markdown(f"[Download {selected_dataset} Dataset]({dataset_url})")
-
+        st.markdown(f"[Click here to download {selected_dataset}]({dataset_url})")
 
