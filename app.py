@@ -30,7 +30,12 @@ if page == "Home Page":
              "you can download it.")
 
     # Page 4 Description
+    st.header("Dataset for Classification (ML) Page")
+    st.write("This page enables you to generate datasets used for Classification (ML) tasks."
+             "Here, you can select the type of output (binary class or multi-class) and choose a specific dataset for download."
+            )
 
+    
     # Page 5 Description
 
     # Page 6 Description
