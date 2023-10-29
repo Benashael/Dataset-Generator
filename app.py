@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "About"])
 
 # Page 1: Introduction
 if page == "Home Page":
@@ -347,3 +347,59 @@ elif page == "Dataset for Clustering (ML)":
         # Data Tail
         st.subheader("Data Tail:")
         st.write(dataset.tail())
+
+# Page 6: Dataset for Association (ML)
+elif page == "Dataset for Association (ML)":
+    st.title("Dataset for Association (ML) Page")
+
+    # Select association dataset
+    selected_dataset = st.selectbox("Select a association dataset:", ("Bakery Dataset", "Basket Analysis Dataset", "Groceries Dataset"))
+
+    dataset_paths = {
+            "Bakery Dataset": "Datasets for ML/Association/bakery_data.csv",
+            "Basket Analysis Dataset": "Datasets for ML/Association/basket_analysis_data.csv",
+            "Groceries Dataset": "Datasets for ML/Association/groceries_data.csv", 
+        }
+
+    if st.button("Generate Dataset"):
+        dataset_url = dataset_paths[selected_dataset]
+
+        # Load and display the selected dataset
+        dataset = pd.read_csv(dataset_url)
+        st.subheader("Generated Dataset:")
+        st.dataframe(dataset)
+
+        # Download the dataset using base64 encoding
+        csv =dataset.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+        href = f'data:file/csv;base64,{b64}'
+        st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+
+        st.header("Dataset Overview")
+            
+        # Dataset Shape
+        st.subheader("Dataset Shape:")
+        st.write(dataset.shape)
+
+        # Column Names
+        st.subheader("Column Names:")
+        st.write(dataset.columns)
+
+        # Data Types
+        st.subheader("Data Types:")
+        st.write(dataset.dtypes)
+
+        # Summary Statistics
+        st.subheader("Summary Statistics:")
+        st.write(dataset.describe())
+        
+        # Data Head
+        st.subheader("Data Head:")
+        st.write(dataset.head())
+
+        # Data Tail
+        st.subheader("Data Tail:")
+        st.write(dataset.tail())
+
+# Page 7: About
+elif page == "About":
