@@ -50,6 +50,12 @@ if page == "Home Page":
     st.write("This page enables you to generate datasets used for Association (ML) tasks. "
              "Each dataset used here as different kind of association rules. "
              "Here, you can choose a specific association dataset for download.")
+
+    # Page 8 Description
+    st.header("Dataset Editor Page")
+    st.write("This page enables you to upload your own dataset. "
+             "Each dataset uploded here is enabled for modification. "
+             "At last, you can download your modified dataset.")
     
     # Tips
     st.header("Additional Tips")
