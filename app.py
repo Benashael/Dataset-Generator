@@ -794,6 +794,7 @@ elif page == "Dataset Trimmer":
             original_dataset = None  # Set data to None if it's not valid
 
     if original_dataset is not None and not original_dataset.empty:
+        
         if original_dataset.shape[0] <= 5000 and original_dataset.shape[1] <= 50:
     
             # Input fields
@@ -836,6 +837,11 @@ elif page == "Dataset Trimmer":
                     # Summary Statistics
                     st.subheader("Summary Statistics:")
                     st.write(generated_df.describe())
+
+        else:
+            st.warning("The dataset exceeds the size limits (max rows: 5000, max columns: 50).")
+    else:
+        st.error("Please upload a valid dataset to continue.")
 
 # Page 8: About
 elif page == "About":
