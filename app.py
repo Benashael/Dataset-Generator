@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "Dataset Editor", "About"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "Dataset Trimmer", "About"])
 
 # Page 1: Introduction
 if page == "Home Page":
@@ -52,9 +52,9 @@ if page == "Home Page":
              "Here, you can choose a specific association dataset for download.")
 
     # Page 8 Description
-    st.header("Dataset Editor Page")
+    st.header("Dataset Trimmer Page")
     st.write("This page enables you to upload your own dataset. "
-             "Each dataset uploded here is enabled for modification. "
+             "Each dataset uploded here is enabled for modification of it's shape. "
              "At last, you can download your modified dataset.")
     
     # Tips
@@ -776,8 +776,8 @@ elif page == "Dataset for Association (ML)":
                 st.write(random_rows.tail())
 
 # Page 7: Dataset Editor
-elif page == "Dataset Editor":
-    st.title("Dataset Editor Page")
+elif page == "Dataset Trimmer":
+    st.title("Dataset Trimmer Page")
     
     # Upload a dataset
     uploaded_file = st.file_uploader("Upload a Dataset", type=["csv"])
@@ -804,7 +804,7 @@ elif page == "Dataset Editor":
             num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=500)
             
             # Generate the dataset
-            if st.button("Generate Edited Dataset"):
+            if st.button("Generate Trimmed Dataset"):
                 if not selected_fields:
                     st.warning("Please select at least one field.")
                 else:
