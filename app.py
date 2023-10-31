@@ -802,7 +802,7 @@ elif page == "Dataset Trimmer":
             selected_fields = st.multiselect("Select field names", original_dataset.columns)
             
             # Input number of rows (max 500)
-            num_rows = st.number_input(f"Enter the number of rows ({original_dataset.shape[0]})", min_value=1, max_value=original_dataset.shape[0])
+            num_rows = st.number_input(f"Enter the number of rows (max {original_dataset.shape[0]} rows)", min_value=1, max_value=original_dataset.shape[0])
             
             # Generate the dataset
             if st.button("Generate Trimmed Dataset"):
