@@ -775,7 +775,7 @@ elif page == "Dataset for Association (ML)":
                 st.subheader("Data Tail:")
                 st.write(random_rows.tail())
 
-# Page 7: Dataset Editor
+# Page 7: Dataset Trimmer
 elif page == "Dataset Trimmer":
     st.title("Dataset Trimmer Page")
     
@@ -802,7 +802,7 @@ elif page == "Dataset Trimmer":
             selected_fields = st.multiselect("Select field names", original_dataset.columns)
             
             # Input number of rows (max 500)
-            num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=500)
+            num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=original_dataset.shape[0])
             
             # Generate the dataset
             if st.button("Generate Trimmed Dataset"):
