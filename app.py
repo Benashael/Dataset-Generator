@@ -9,7 +9,7 @@ st.set_page_config(
     page_icon="📂",
     layout="wide"
 )
-page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "About"])
+page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "Dataset Editor", "About"])
 
 # Page 1: Introduction
 if page == "Home Page":
@@ -424,7 +424,7 @@ elif page == "Dataset for Classification (ML)":
                     st.subheader("Data Tail:")
                     st.write(random_rows.tail())
 
-# Page 4: Dataset for Regression (ML)
+# Page 5: Dataset for Regression (ML)
 elif page == "Dataset for Regression (ML)":
     st.title("Dataset for Regression (ML) Page")
 
@@ -537,7 +537,7 @@ elif page == "Dataset for Regression (ML)":
                 st.subheader("Data Tail:")
                 st.write(random_rows.tail())
 
-# Page 5: Dataset for Clustering (ML)
+# Page 6: Dataset for Clustering (ML)
 elif page == "Dataset for Clustering (ML)":
     st.title("Dataset for Clustering (ML) Page")
 
@@ -656,7 +656,7 @@ elif page == "Dataset for Clustering (ML)":
                 st.subheader("Data Tail:")
                 st.write(random_rows.tail())
 
-# Page 6: Dataset for Association (ML)
+# Page 7: Dataset for Association (ML)
 elif page == "Dataset for Association (ML)":
     st.title("Dataset for Association (ML) Page")
 
@@ -769,7 +769,66 @@ elif page == "Dataset for Association (ML)":
                 st.subheader("Data Tail:")
                 st.write(random_rows.tail())
 
-# Page 7: About
+# Page 7: Dataset Editor
+elif page == "Dataset Editor":
+    st.title("Dataset Editor Page")
+    
+    # Upload a dataset
+    uploaded_file = st.file_uploader("Upload a Dataset", type=["csv"])
+    
+    # Initialize data as None
+    original_dataset = None
+    
+    # Check if a file was uploaded and if it's valid
+    if uploaded_file is not None:
+        try:
+            original_dataset = pd.read_csv(uploaded_file)
+        except (ValueError, pd.errors.ParserError):
+            st.error("The uploaded dataset is not in a valid format or language. Please upload a valid dataset in CSV format.")
+            original_dataset = None  # Set data to None if it's not valid
+
+    # Input fields
+    st.write("Select the fields you want to include in the generated dataset:")
+    selected_fields = st.multiselect("Select field names", original_dataset.columns)
+    
+    # Input number of rows (max 500)
+    num_rows = st.number_input("Enter the number of rows (max 500)", min_value=1, max_value=500)
+    
+    # Generate the dataset
+    if st.button("Generate Edited Dataset"):
+        if not selected_fields:
+            st.warning("Please select at least one field.")
+        else:
+            # Randomly sample rows from the original dataset
+            generated_df = original_dataset[selected_fields].sample(n=num_rows, replace=True)
+            st.subheader("Generated Dataset:")
+            st.dataframe(generated_df)
+    
+            # Download the dataset using st.button and base64
+            csv = generated_df.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+            href = f'data:file/csv;base64,{b64}'
+            st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+            
+            st.header("Dataset Overview")
+            
+            # Dataset Shape
+            st.subheader("Dataset Shape:")
+            st.write(generated_df.shape)
+    
+            # Column Names
+            st.subheader("Column Names:")
+            st.write(generated_df.columns)
+    
+            # Data Types
+            st.subheader("Data Types:")
+            st.write(generated_df.dtypes)
+    
+            # Summary Statistics
+            st.subheader("Summary Statistics:")
+            st.write(generated_df.describe())
+
+# Page 8: About
 elif page == "About":
     st.title("🚀 About the Dataset Generator App")
     st.markdown("""
