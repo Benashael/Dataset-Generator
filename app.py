@@ -354,7 +354,7 @@ elif page == "Dataset for Regression (ML)":
                 st.subheader("Entire Dataset Shape:")
                 st.write(dataset.shape)
                 
-                st.subheader("Dataset Shape:")
+                st.subheader("Generated Dataset Shape:")
                 st.write(random_rows.shape)
         
                 # Column Names
