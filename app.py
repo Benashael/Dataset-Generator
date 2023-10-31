@@ -277,16 +277,16 @@ elif page == "Dataset for Regression (ML)":
             "House Price Dataset": "Datasets for ML/Regression/house_price_data.csv", 
         }
 
-    if st.button("Generate Dataset"):
-        dataset_url = dataset_paths[selected_dataset]
-
-        # Load and display the selected dataset
-        dataset = pd.read_csv(dataset_url)
+    option = st.radio("Select dataset generation option:", ("Entire Dataset", "Random Number of Rows"))
         
-        option = st.radio("Select dataset option:", ("Entire Dataset", "Random Number of Rows"))
-        
-        if option == "Entire Dataset":
-            # Display the entire dataset
+    if option == "Entire Dataset":
+        # Display the entire dataset
+        if st.button("Generate Dataset"):
+            dataset_url = dataset_paths[selected_dataset]
+    
+            # Load and display the selected dataset
+            dataset = pd.read_csv(dataset_url)
+            
             st.subheader("Generated Dataset:")
             st.dataframe(dataset)
 
@@ -322,7 +322,13 @@ elif page == "Dataset for Regression (ML)":
             st.subheader("Data Tail:")
             st.write(dataset.tail())
         
-        else:
+    else:
+        if st.button("Generate Dataset"):
+            dataset_url = dataset_paths[selected_dataset]
+
+            # Load and display the selected dataset
+            dataset = pd.read_csv(dataset_url)
+        
             # Generate random number of rows up to 500
             num_rows = st.number_input("Select the number of rows (1-500):", min_value=1, max_value=500, value=10)
             header = st.checkbox("Include header")
@@ -336,13 +342,13 @@ elif page == "Dataset for Regression (ML)":
             
             st.subheader("Generated Dataset:")
             st.dataframe(random_rows)
-
+    
             # Download the dataset using base64 encoding
             csv =random_rows.to_csv(index=False)
             b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
             href = f'data:file/csv;base64,{b64}'
             st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
-
+    
             st.header("Dataset Overview")
                 
             # Dataset Shape
