@@ -509,45 +509,105 @@ elif page == "Dataset for Association (ML)":
             "Groceries Dataset": "Datasets for ML/Association/groceries_data.csv", 
         }
 
-    if st.button("Generate Dataset"):
+    option = st.radio("Select dataset generation option:", ("Entire Dataset", "Random Number of Rows with selected Fields"))
+        
+    if option == "Entire Dataset":
+        # Display the entire dataset
+        if st.button("Generate Dataset"):
+            dataset_url = dataset_paths[selected_dataset]
+    
+            # Load and display the selected dataset
+            dataset = pd.read_csv(dataset_url)
+            
+            st.subheader("Generated Dataset:")
+            st.dataframe(dataset)
+
+            # Download the dataset using base64 encoding
+            csv =dataset.to_csv(index=False)
+            b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+            href = f'data:file/csv;base64,{b64}'
+            st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+
+            st.header("Dataset Overview")
+            
+            # Dataset Shape
+            st.subheader("Dataset Shape:")
+            st.write(dataset.shape)
+    
+            # Column Names
+            st.subheader("Column Names:")
+            st.write(dataset.columns)
+    
+            # Data Types
+            st.subheader("Data Types:")
+            st.write(dataset.dtypes)
+    
+            # Summary Statistics
+            st.subheader("Summary Statistics:")
+            st.write(dataset.describe())
+            
+            # Data Head
+            st.subheader("Data Head:")
+            st.write(dataset.head())
+    
+            # Data Tail
+            st.subheader("Data Tail:")
+            st.write(dataset.tail())
+        
+    else:
         dataset_url = dataset_paths[selected_dataset]
 
         # Load and display the selected dataset
         dataset = pd.read_csv(dataset_url)
-        st.subheader("Generated Dataset:")
-        st.dataframe(dataset)
-
-        # Download the dataset using base64 encoding
-        csv =dataset.to_csv(index=False)
-        b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
-        href = f'data:file/csv;base64,{b64}'
-        st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
-
-        st.header("Dataset Overview")
-            
-        # Dataset Shape
-        st.subheader("Dataset Shape:")
-        st.write(dataset.shape)
-
-        # Column Names
-        st.subheader("Column Names:")
-        st.write(dataset.columns)
-
-        # Data Types
-        st.subheader("Data Types:")
-        st.write(dataset.dtypes)
-
-        # Summary Statistics
-        st.subheader("Summary Statistics:")
-        st.write(dataset.describe())
+    
+        st.write("Select the fields you want to include in the generated dataset:")
+        selected_fields = st.multiselect("Select field names", dataset.columns)
         
-        # Data Head
-        st.subheader("Data Head:")
-        st.write(dataset.head())
+        # Generate random number of rows up to 500
+        num_rows = st.number_input("Select the number of rows (1-500):", min_value=1, max_value=500, value=10)
+        random_rows = dataset[selected_fields].sample(n=num_rows, replace=True)
 
-        # Data Tail
-        st.subheader("Data Tail:")
-        st.write(dataset.tail())
+        if st.button("Generate Dataset"):
+            if not selected_fields:
+                st.warning("Please select at least one field.")
+            else:
+                st.subheader("Generated Dataset:")
+                st.dataframe(random_rows)
+        
+                # Download the dataset using base64 encoding
+                csv =random_rows.to_csv(index=False)
+                b64 = base64.b64encode(csv.encode()).decode()  # Encode to base64
+                href = f'data:file/csv;base64,{b64}'
+                st.markdown(f'<a href="{href}" download="generated_dataset.csv">Click here to download Generated Dataset</a>', unsafe_allow_html=True)
+        
+                st.header("Dataset Overview")
+                    
+                # Dataset Shape
+                st.subheader("Entire Dataset Shape:")
+                st.write(dataset.shape)
+                
+                st.subheader("Generated Dataset Shape:")
+                st.write(random_rows.shape)
+        
+                # Column Names
+                st.subheader("Column Names:")
+                st.write(random_rows.columns)
+        
+                # Data Types
+                st.subheader("Data Types:")
+                st.write(random_rows.dtypes)
+        
+                # Summary Statistics
+                st.subheader("Summary Statistics:")
+                st.write(random_rows.describe())
+                
+                # Data Head
+                st.subheader("Data Head:")
+                st.write(random_rows.head())
+        
+                # Data Tail
+                st.subheader("Data Tail:")
+                st.write(random_rows.tail())
 
 # Page 7: About
 elif page == "About":
