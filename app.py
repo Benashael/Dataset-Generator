@@ -277,7 +277,7 @@ elif page == "Dataset for Regression (ML)":
             "House Price Dataset": "Datasets for ML/Regression/house_price_data.csv", 
         }
 
-    option = st.radio("Select dataset generation option:", ("Entire Dataset", "Random Number of Rows"))
+    option = st.radio("Select dataset generation option:", ("Entire Dataset", "Random Number of Rows with selected Fields"))
         
     if option == "Entire Dataset":
         # Display the entire dataset
@@ -329,16 +329,12 @@ elif page == "Dataset for Regression (ML)":
             # Load and display the selected dataset
             dataset = pd.read_csv(dataset_url)
         
+            st.write("Select the fields you want to include in the generated dataset:")
+            selected_fields = st.multiselect("Select field names", dataset.columns)
+            
             # Generate random number of rows up to 500
             num_rows = st.number_input("Select the number of rows (1-500):", min_value=1, max_value=500, value=10)
-            header = st.checkbox("Include header")
-            if header:
-                # Include the header and display random rows
-                random_rows = dataset.sample(n=num_rows)
-            else:
-                # Exclude the header and display random rows
-                header = None
-                random_rows = dataset.sample(n=num_rows, header=None)
+            random_rows = dataset[selected_fields].sample(n=num_rows, replace=True)
             
             st.subheader("Generated Dataset:")
             st.dataframe(random_rows)
