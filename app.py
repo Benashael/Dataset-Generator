@@ -11,12 +11,11 @@ st.set_page_config(
 )
 page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "Dataset Trimmer", "About"])
 
+st.title("Dataset Generator App")
+st.write("This app allows you to generate datasets for various purposes.")  
+
 # Page 1: Introduction
 if page == "Home Page":
-    # Introduction
-    st.title("Welcome to the Dataset Generator App")
-    st.write("This app allows you to generate datasets for various purposes. It consists of seven pages:")  
-
     # Page 2 Description
     st.header("Automatic Dataset Generator Page")
     st.write("This page enables you to generate datasets based on your original dataset. You can select fields from "
