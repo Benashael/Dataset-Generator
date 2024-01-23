@@ -14,6 +14,14 @@ page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Gene
 st.title("Dataset Generator App")
 st.write("This app allows you to generate datasets for various purposes.")  
 
+autods_url = "https://automl-edm4ay4xfq74bezcdtnovs.streamlit.app/" 
+if st.button("Apply Data Science techniques to my generated dataset"):
+    st.write(f'<a href="{datasetgenerator_url}" target="_blank">Click here to explore the powerful Data Science tool</a>', unsafe_allow_html=True)
+
+aihub_url = "https://sites.google.com/view/aihub-1?usp=sharing"
+if st.button("Return to AI Hub"):
+    st.write(f'<a href="{aihub_url}" target="_blank">Click here to move back to AI Hub</a>', unsafe_allow_html=True)
+
 # Page 1: Introduction
 if page == "Home Page":
     # Page 2 Description
