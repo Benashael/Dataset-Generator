@@ -14,7 +14,7 @@ page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Gene
 st.title("Dataset Generator App")
 st.write("This app allows you to generate datasets for various purposes.")  
 
-autods_url = "https://automl-edm4ay4xfq74bezcdtnovs.streamlit.app/" 
+autods_url = "https://autods-fm7ruhefvjuy5mn46x3yqy.streamlit.app/" 
 if st.button("Apply Data Science techniques"):
     st.write(f'<a href="{autods_url}" target="_blank">Click here to explore the powerful Data Science tool</a>', unsafe_allow_html=True)
 
