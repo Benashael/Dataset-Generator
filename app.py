@@ -5,7 +5,7 @@ import random
 import base64
     
 st.set_page_config(
-    page_title="Data Weaver: Automatic Dataset Generation and Refinement",
+    page_title="Data Weaver",
     page_icon="📂",
     layout="wide"
 )
