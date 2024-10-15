@@ -5,13 +5,13 @@ import random
 import base64
     
 st.set_page_config(
-    page_title="Dataset Generator App",
+    page_title="Data Weaver: Automatic Dataset Generation and Refinement",
     page_icon="📂",
     layout="wide"
 )
 page=st.sidebar.radio("**Select a Page**", ["Home Page", "Automatic Dataset Generator", "Custom Dataset Generator", "Dataset for Classification (ML)", "Dataset for Regression (ML)", "Dataset for Clustering (ML)", "Dataset for Association (ML)", "Dataset Trimmer", "About"])
 
-st.title("Dataset Generator App")
+st.title("Data Weaver: Automatic Dataset Generation and Refinement")
 st.write("This app allows you to generate datasets for various purposes.")  
 
 autods_url = "https://autods-fm7ruhefvjuy5mn46x3yqy.streamlit.app/" 
